@@ -25,3 +25,20 @@ addVoicesToSelect();
 if (speechSynthesis.onvoiceschanged !== undefined) {
   speechSynthesis.onvoiceschanged = addVoicesToSelect;
 }
+
+function onSubmit(e) {
+  e.preventDefault();
+
+  const textInput = document.getElementById("text-input");
+  const utterThis = new SpeechSynthesisUtterance(textInput.value);
+
+  const selectedOption =
+    voiceSelect.selectedOptions[0].getAttribute("data-name");
+  for (let i = 0; i < voices.length; i++) {
+    if (voices[i].name === selectedOption) {
+      utterThis.voice = voices[i];
+    }
+  }
+
+  synth.speak(utterThis);
+}
