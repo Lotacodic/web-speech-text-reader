@@ -42,3 +42,5 @@ function onSubmit(e) {
 
   synth.speak(utterThis);
 }
+
+document.getElementById("form").addEventListener("submit", onSubmit);
